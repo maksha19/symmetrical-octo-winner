@@ -1,0 +1,29 @@
+name: Push to master
+
+on:
+  push:
+    branches: [master]
+
+jobs:
+  bump-build-and-publish:
+    runs-on: self-hosted-stg
+    container:
+      image: bitnami/git:latest
+    env:
+      NODE_VERSION: "14.x"
+    steps:
+      - uses: actions/checkout@v2
+      - uses: actions/setup-node@v2
+        with:
+          node-version: ${{ env.NODE_VERSION }}
+      - name: "Automated Version Bump"
+        uses: "phips28/gh-action-bump-version@master"
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      - run: |
+          npm config set //npm.pkg.github.com/:_authToken $TOKEN
+          npm install
+          npm run build
+          npm publish
+        env:
+          TOKEN: ${{secrets.GITHUB_TOKEN}}
