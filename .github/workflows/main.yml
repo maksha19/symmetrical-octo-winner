@@ -34,3 +34,7 @@ jobs:
         run: |
           echo Add other actions to build,
           echo test, and deploy your project.
+      - name : Set Up npmrc
+        run: echo "//registry.npmjs.org/:_authToken=${{secrets.GH_INSTALL}}" > .npmrc
+      - name: install package
+        run: npm ci
