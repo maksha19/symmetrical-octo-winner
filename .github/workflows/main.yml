@@ -35,6 +35,8 @@ jobs:
           echo Add other actions to build,
           echo test, and deploy your project.
       - name : Set Up authToken
-        run: npm config set //npm.pkg.github.com/:_authToken $GH_INSTALL
+        run: npm config set //npm.pkg.github.com/:_authToken $TOKEN
+        env:
+          TOKEN: ${{secrets.GH_INSTALL}}
       - name: install package
         run: npm ci
