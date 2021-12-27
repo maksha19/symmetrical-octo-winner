@@ -17,6 +17,6 @@
   "dependencies": {
     "date-fns": "^2.27.0",
     "date-fns-tz": "^1.2.2",
-    "@rationally-app/payment-qr-parser": "^1.0.1",
+    "@rationally-app/payment-qr-parser": "^1.0.1"
   }
 }
