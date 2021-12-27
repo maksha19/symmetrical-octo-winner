@@ -40,3 +40,5 @@ jobs:
           TOKEN: ${{secrets.GH_INSTALL}}
       - name: install package
         run: npm ci
+      - name: Run testing 
+        run : node index.js
